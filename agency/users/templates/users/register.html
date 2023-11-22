@@ -3,27 +3,22 @@
 
 
 {% block content %}
-<h1>LOGIN</h1>
+<h1>REGISTER</h1>
 <div class="form_wrapper">
-<form action="{% url 'users:user_login' %}" method="post">
+<form action="{% url 'users:register' %}" method="post">
     {% csrf_token %}
       {% for f in form %}
-        
+
         <div class="form_fields">
-          <label >{{f.label_tag}}</label>
+            <label >{{f.label_tag}}</label>
            {% render_field f   %}
         </div>
             <div class="form-errors">{{ f.errors }}</div>
 
         {% endfor %}
-        <button type="submit" class="users_links">ВОЙТИ</button>
+        <button type="submit" class="users_links">ЗАРЕГИСТРИРОВАТЬСЯ</button>
 
 </form>
-
-<a class="users_links" href="{% url 'users:register' %}">ЗАРЕГИСТРИРОВАТЬСЯ </a>
+<a class="users_links" href="{% url 'home' %}">MAIN PAGE  </a>
 </div>
 {% endblock content %}
-
-
-
-
