@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<h1>LOGIN</h1>
+<div class="form_wrapper">
+<form action="{% url 'users:user_login' %}" method="post">
+    {% csrf_token %}
+      {% for f in form %}
+
+        <div class="form_fields">
+           {% render_field f  class="form-control" %}
+        </div>
+            <div class="form-errors">{{ f.errors }}</div>
+
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Войти</button>
+
+</form>
+</div>
+{% endblock content %}
+
+
+
+

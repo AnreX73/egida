@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&display=swap');
+
+/*обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align:center;
+}
+
+
+/*конец обнуление*/
+
+h1{color:red;}
+
+.all-content-wrapper{
+display:flex;
+flex-direction:column;
+align-items:center;
+max-width:1200px;
+margin:0 auto;
+height:calc(100vh - 80px);
+
+}
+
+.form_fields{
+margin-bottom:0.5rem;
+}
+.users_links{
+  background-color: teal;
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 4px;
+}
+

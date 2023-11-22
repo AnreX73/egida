@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+
+
+
+{% block content %}
+<h1>Profile</h1>
+{{user}}
+<a class="users_links" href="{% url 'users:logout' %}">ВЫЙТИ  </a>
+{% endblock content %}
