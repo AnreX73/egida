@@ -5,13 +5,23 @@ from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
-class UserCreationForm(UserCreationForm):
-  
+
+class UserCreateForm(UserCreationForm):
+    username = forms.CharField(label=_("username"), help_text='имя для входа на сайт, не менее 4 символов')
+    email = forms.EmailField(
+        label=("адрес электронной почты"),
+        max_length=254,
+        help_text='может понадобиться для восстановления пароля')
+    first_name = forms.CharField(label=_("first name"), max_length=150, required=True,
+                                 help_text='Как к Вам обращаться?',)
+    phone_number = forms.CharField(label='телефон для связи', max_length=15,
+                                   help_text='не обязательно, но может пригодится',)
+    password1 = forms.CharField(label=_("password"), help_text='не менее 8 символов',  widget=forms.PasswordInput)
+    password2 = forms.CharField(label='поджтверждение пароля', help_text='повторите пароль',  widget=forms.PasswordInput)
+
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ('username', 'email', 'first_name', 'phone_number','password1', 'password2')
-        
-        
+        fields = ('username', 'email', 'first_name', 'phone_number', 'password1', 'password2')
 
 
 class UserLoginForm(AuthenticationForm):
