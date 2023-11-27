@@ -24,6 +24,15 @@ class UserCreateForm(UserCreationForm):
         fields = ('username', 'email', 'first_name', 'phone_number', 'password1', 'password2')
 
 
+class ChangeUserlnfoForm(forms.ModelForm):
+    phone_number = forms.CharField(label='телефон для связи', max_length=30, required=True,)
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('username', 'email', 'first_name', 'phone_number')
+      
+
+
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(max_length=150, widget=forms.TextInput(), )
     password = forms.CharField(label=_("password"), widget=forms.PasswordInput(), )
