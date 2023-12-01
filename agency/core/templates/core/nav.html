@@ -1,3 +1,6 @@
 <div class="nav-wrapper">
     <h3>здесь будет навигация</h3>
+    {% if user.is_authenticated %}
+   <a  href="{% url 'users:profile' %}">{{ user }} </a>
+    {% endif %}
 </div>   

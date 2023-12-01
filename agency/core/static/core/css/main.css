@@ -148,3 +148,8 @@ input:-webkit-autofill:focus{
 
 }
 
+.reset_massage_wrapper{
+max-width: 450px;
+text-align:justify;
+font-size:1.1rem;
+}

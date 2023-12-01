@@ -19,7 +19,7 @@
         <button type="submit" class="users_links">ВОЙТИ</button>
 
 </form>
-
+<a class="users_links" href="{% url 'users:password_reset' %}">забыли пароль  </a>
 <a class="users_links" href="{% url 'users:register' %}">ЗАРЕГИСТРИРОВАТЬСЯ </a>
 </div>
 {% endblock content %}
