@@ -7,15 +7,42 @@
 <div class="form_wrapper">
 <form action="{% url 'users:register' %}" method="post">
     {% csrf_token %}
-      {% for f in form %}
+      
 
         <div class="form_fields">
-            <label >{{f.label_tag}}</label>
-           {% render_field f placeholder=f.help_text  %}
+            <label >{{form.username.label}}</label>
+           {% render_field form.username placeholder=form.username.help_text hx-post='/users/check_username/' hx-trigger='keyup' hx-target='#reactive_error' %}
+           <div class="form-errors" style="color: brown;">{{ form.username.errors }}</div>
+            <div id="reactive_error"></div>
         </div>
-            <div class="form-errors" style="color: brown;">{{ f.errors }}</div>
+        <div class="form_fields">
+            <label >{{form.email.label}}</label>
+           {% render_field form.email placeholder=form.email.help_text  %}
+           <div class="form-errors" style="color: brown;">{{ form.email.errors }}</div>
+        </div>
+        <div class="form_fields">
+            <label >{{form.first_name.label}}</label>
+           {% render_field form.first_name placeholder=form.first_name.help_text  %}
+           <div class="form-errors" style="color: brown;">{{ form.first_name.errors }}</div>
+        </div>
+        <div class="form_fields">
+            <label >{{form.phone_number.label}}</label>
+           {% render_field form.phone_number placeholder=form.phone_number.help_text  %}
+           <div class="form-errors" style="color: brown;">{{ form.phone_number.errors }}</div>
+        </div>
+        <div class="form_fields">
+            <label >{{form.password1.label}}</label>
+           {% render_field form.password1 placeholder=form.password1.help_text  %}
+           <div class="form-errors" style="color: brown;">{{ form.password1.errors }}</div>
+        </div>
+        <div class="form_fields">
+            <label >{{form.password2.label}}</label>
+           {% render_field form.password2 placeholder=form.password2.help_text  %}
+           <div class="form-errors" style="color: brown;">{{ form.password2.errors }}</div>
+        </div>
+            
 
-        {% endfor %}
+        
         <button type="submit" class="users_links">зарегистрироваться</button>
 
 </form>
