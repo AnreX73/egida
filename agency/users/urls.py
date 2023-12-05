@@ -1,7 +1,7 @@
 from django.urls import path, include, reverse_lazy
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
-from users.views import Register, UserLogin, profile, UpdateUserInfo
+from users.views import Register, UserLogin, profile, UpdateUserInfo, check_username
 
 app_name = 'users'
 urlpatterns = [
@@ -30,4 +30,12 @@ urlpatterns = [
     path('password-reset/complete/',
          PasswordResetCompleteView.as_view(template_name="users/password_reset_complete.html"),
          name='password_reset_complete'),
+    
 ]
+
+hmtx_views = [
+    path("check-username/",check_username, name='check-username'),
+]
+
+urlpatterns += hmtx_views
+

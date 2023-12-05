@@ -96,6 +96,17 @@ font-size:0.8rem;
 .simple_links{
   color: teal;
   font-size: 1.1rem;
+  
+}
+.htmx__danger{
+  color: red;
+  transition: all ease-in 1.5s;
+  font-size: 2rem;
+  transform: rotate(45deg);
+}
+.htmx__success{
+  color: green;
+  transition: all ease-in-out 1.5s;
 }
 
 .all-content-wrapper{

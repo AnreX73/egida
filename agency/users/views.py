@@ -6,6 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
+from django.contrib.auth import get_user_model
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView, DeleteView
@@ -69,3 +70,11 @@ def profile(request):
 
     }
     return render(request, 'users/profile.html', context=context)
+
+
+def check_username(request):
+    username = request.POST.get('username')
+    if get_user_model().objects.filter(username=username).exists():
+        return HttpResponse("<div id='reactive_error' class='htmx__danger'> Этот пользователь уже существует </div>")
+    else:
+        return HttpResponse("<div id='reactive_error' class='htmx__success'> Имя пользователя свободно </div>")

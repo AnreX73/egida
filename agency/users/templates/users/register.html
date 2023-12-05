@@ -11,7 +11,7 @@
 
         <div class="form_fields">
             <label >{{form.username.label}}</label>
-           {% render_field form.username placeholder=form.username.help_text hx-post='/users/check_username/' hx-trigger='keyup' hx-target='#reactive_error' %}
+           {% render_field form.username placeholder=form.username.help_text hx-post='/users/check-username/'  hx-trigger='keyup'  hx-target="#reactive_error"  %}
            <div class="form-errors" style="color: brown;">{{ form.username.errors }}</div>
             <div id="reactive_error"></div>
         </div>
