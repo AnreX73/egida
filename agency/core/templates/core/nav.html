@@ -1,9 +1,27 @@
-<div class="nav-wrapper">
-    <h3>здесь будет навигация</h3>
-    {% if user.is_authenticated %}
-   <a class="simple_links"  href="{% url 'users:profile' %}">{{ user }} </a>
-    {% endif %}
-    <hr>
-    <a class="simple_links"  href="{% url 'home' %}">MAIN PAGE  </a>
-    <hr>
-</div>   
+<nav>
+
+    <div class="nav_box nav_logo_box">
+        <a class="simple_links"  href="{% url 'home' %}">главная </a>
+    </div>
+    
+    <div class="nav_box nav_main_box">
+        <div class="main_nav_item">пункт меню</div>
+        <div class="main_nav_item">пункт меню</div>
+        <div class="main_nav_item">пункт меню</div>
+        <div class="main_nav_item">пункт меню</div>
+        <div class="main_nav_item">пункт меню</div>
+        <div class="main_nav_item">пункт меню</div> 
+    </div>
+
+    <div class="nav_box nav_user_box">
+        {% if user.is_authenticated %}
+        <a class="simple_links"  href="{% url 'users:profile' %}">{{ user }} </a>
+        <a class="simple_links" href="{% url 'users:logout' %}">выйти</a>
+        {% else %} 
+        <a class="simple_links" href="{% url 'users:user_login' %}">войти  </a>
+         {% endif %}
+    </div>
+    
+</nav>
+
+ 

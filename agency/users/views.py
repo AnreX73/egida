@@ -17,12 +17,12 @@ from users.models import *
 
 
 class Register(View):
-    template_name = 'users/register.html'
+    template_name = "users/register.html"
 
     def get(self, request):
         context = {
-            'form': UserCreateForm(),
-            'title': 'регистрация',
+            "form": UserCreateForm(),
+            "title": "регистрация",
         }
         return render(request, self.template_name, context)
 
@@ -30,22 +30,22 @@ class Register(View):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('users:profile')
+            return redirect("users:profile")
         context = {
-            'form': form,
+            "form": form,
         }
         return render(request, self.template_name, context)
 
+
 class UpdateUserInfo(LoginRequiredMixin, UpdateView):
     model = User
-    template_name = 'users/update_user_info.html'
+    template_name = "users/update_user_info.html"
     form_class = ChangeUserlnfoForm
-    success_url = reverse_lazy('users:profile')
-    
+    success_url = reverse_lazy("users:profile")
 
     def setup(self, request, *args, **kwargs):
         self.user_id = request.user.pk
@@ -56,25 +56,28 @@ class UpdateUserInfo(LoginRequiredMixin, UpdateView):
             queryset = self.get_queryset()
         return get_object_or_404(queryset, pk=self.user_id)
 
-        
+
 class UserLogin(LoginView):
-    template_name = 'users/user_login.html'
+    template_name = "users/user_login.html"
     form_class = UserLoginForm
 
 
-@login_required(login_url='/')
+@login_required(login_url="/")
 def profile(request):
     user = request.user
     context = {
-        'user': user,
-
+        "user": user,
     }
-    return render(request, 'users/profile.html', context=context)
+    return render(request, "users/profile.html", context=context)
 
 
 def check_username(request):
-    username = request.POST.get('username')
+    username = request.POST.get("username")
     if get_user_model().objects.filter(username=username).exists():
-        return HttpResponse("<div id='reactive_error' class='htmx__danger'> Этот пользователь уже существует </div>")
+        return HttpResponse(
+            "<div id='reactive_error' class='htmx__danger'> Этот пользователь уже существует </div>"
+        )
     else:
-        return HttpResponse("<div id='reactive_error' class='htmx__success'> Имя пользователя свободно </div>")
+        return HttpResponse(
+            "<div id='reactive_error' class='htmx__success'> Имя пользователя свободно </div>"
+        )
