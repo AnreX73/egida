@@ -60,6 +60,9 @@ class UpdateUserInfo(LoginRequiredMixin, UpdateView):
 class UserLogin(LoginView):
     template_name = "users/user_login.html"
     form_class = UserLoginForm
+    extra_context = {
+        'title':'вход в систему'
+    }
 
 
 @login_required(login_url="/")
