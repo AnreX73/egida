@@ -10,5 +10,9 @@
  <p>{{ fr.start_appointment }}</p> 
  <p>{{ fr.end_appointment }}</p> 
 {% endfor%}
+{% for fr in check_arr %}
+{{ fr.day }}
+
+{% endfor %}
 
 {% endblock content %}
