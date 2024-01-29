@@ -5,24 +5,37 @@ from core.models import DaysOfWeek, Specialization, Doctor, Schedule
 
 # @admin.register(DaysOfWeek)
 # class DaysOfWeekAdmin(admin.ModelAdmin):
-#     pass
+#     list_display = ("id", "ru_name", "short_name", "int_name")
+#     save_on_top = True
 
 
 @admin.register(Specialization)
 class SpecializationAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "slug")
+    list_display_links = ("id", "name")
     prepopulated_fields = {"slug": ("name",)}
+    save_on_top = True
 
 
 class ScheduleAdmin(admin.TabularInline):
     model = Schedule
     fields = ("day", "start_appointment", "end_appointment")
-
+    save_on_top = True
 
 
 class DoctorAdmin(admin.ModelAdmin):
     inlines = [ScheduleAdmin]
+    list_display = (
+        "id",
+        "firstname",
+        "fathername",
+        "lastname",
+        "speciality",
+        "duration",
+    )
+    list_display_links = ("id", "firstname")
     prepopulated_fields = {"slug": ("lastname", "firstname")}
-
+    save_on_top = True
 
 
 admin.site.register(Doctor, DoctorAdmin)

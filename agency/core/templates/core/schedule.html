@@ -6,7 +6,8 @@
 <h1>Регистратура</h1>
 
 {% for d in doctors %}
-<h2> {{ d.firstname }} </h2>
+<a href="{% url 'doctor_profile' d.slug %}"><h2> {{ d.firstname }} </h2></a>
+
 
 {% endfor %}
 

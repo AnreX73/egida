@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 class DaysOfWeek(models.Model):
     ru_name = models.CharField(max_length=20, verbose_name="День недели")
@@ -53,6 +53,9 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.lastname
+    
+    def get_absolute_url(self):
+        return reverse('doctor_profile', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = "Доктор"
