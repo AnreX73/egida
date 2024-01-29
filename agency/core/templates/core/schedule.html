@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+
+
+{% block content %}
+<h1>Регистратура</h1>
+
+{% for d in doctors %}
+<h2> {{ d.firstname }} </h2>
+
+{% endfor %}
+
+{% endblock content %}

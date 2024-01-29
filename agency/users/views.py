@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from users.forms import UserLoginForm, UserCreateForm, ChangeUserlnfoForm
+from users.forms import UserLoginForm, UserCreateForm, ChangeUserInfoForm
 from users.models import *
 
 
@@ -44,7 +44,7 @@ class Register(View):
 class UpdateUserInfo(LoginRequiredMixin, UpdateView):
     model = User
     template_name = "users/update_user_info.html"
-    form_class = ChangeUserlnfoForm
+    form_class = ChangeUserInfoForm
     success_url = reverse_lazy("users:profile")
 
     def setup(self, request, *args, **kwargs):
