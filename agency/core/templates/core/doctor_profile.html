@@ -3,16 +3,22 @@
 
 
 {% block content %}
+
 <h1>{{ doctor.speciality }} {{ doctor.lastname }} </h1>
 {{ now.date }}
-{% for fr in schedule %}
- <p>{{ fr.day }}</p> 
- <p>{{ fr.start_appointment }}</p> 
- <p>{{ fr.end_appointment }}</p> 
-{% endfor%}
-{% for fr in check_arr %}
-{{ fr.day }}
+
+{% for fr in actual_schedule %}
+
+<p>{{ fr.weekday }}</p>
+<p>{{ schedule }}</p>
+
+<p>{{ fr.start_appointment }}</p>
+
+
+
 
 {% endfor %}
+
+
 
 {% endblock content %}

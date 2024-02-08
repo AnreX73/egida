@@ -1,12 +1,6 @@
 from django.contrib import admin
 
-from core.models import DaysOfWeek, Specialization, Doctor, Schedule
-
-
-# @admin.register(DaysOfWeek)
-# class DaysOfWeekAdmin(admin.ModelAdmin):
-#     list_display = ("id", "ru_name", "short_name", "int_name")
-#     save_on_top = True
+from core.models import Specialization, Doctor, Schedule
 
 
 @admin.register(Specialization)
