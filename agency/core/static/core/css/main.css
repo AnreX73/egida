@@ -107,7 +107,7 @@ input::placeholder {
   color: red;
   transition: all ease-in 1.5s;
   font-size: 1.1rem;
-  
+
 }
 
 .htmx__success {
@@ -125,7 +125,7 @@ input::placeholder {
   height: calc(100vh - 80px);
 }
 
-nav{
+nav {
   width: 100%;
   margin-top: 1rem;
   display: grid;
@@ -134,20 +134,24 @@ nav{
   gap: 1rem;
   padding: 1rem;
 }
-.nav_logo_box{
+
+.nav_logo_box {
   justify-self: start;
 }
-.nav_main_box{
+
+.nav_main_box {
   width: 100%;
   display: flex;
   justify-content: space-around;
   background-color: azure;
 }
-.nav_user_box{
+
+.nav_user_box {
   justify-self: end;
 }
-.nav_user_box a{
- margin-right: 1rem;
+
+.nav_user_box a {
+  margin-right: 1rem;
 }
 
 
@@ -203,4 +207,66 @@ input:-webkit-autofill:focus {
   max-width: 450px;
   text-align: justify;
   font-size: 1.1rem;
+}
+
+.doctor_schedule_calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  align-content: center;
+  justify-items: center;
+  padding: 0.5rem;
+  
+
+}
+.calendar_items_wrapper {
+  display: grid;
+  box-shadow: rgb(162, 199, 199) 2px 2px 7px ;
+  border-radius: 12px;
+  
+  
+  
+  grid-template-areas:
+  "date_area start_time_area"
+  "date_area end_time_area";
+}
+
+.calendar_items_wrapper:hover {
+  box-shadow: rgb(162, 199, 199) 2px 2px 10px 7px ;
+  
+}
+.calendar_item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.3rem;
+  background-color: azure;
+  min-width: 30px;
+  justify-content: center;
+ 
+}
+
+.date_area {
+  grid-area: date_area;
+  border-right: 1px dotted teal;
+}
+
+.start_time_area {
+  grid-area: start_time_area;
+}
+
+.end_time_area {
+  grid-area: end_time_area;
+}
+
+a {
+  color: teal;
+  text-decoration: none;
+}
+
+.standart_week{
+  font-weight: bold;
+  color: teal;
 }

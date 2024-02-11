@@ -5,6 +5,7 @@ import datetime
 from dateutil.rrule import *
 from dateutil.relativedelta import *
 
+
 NOW = datetime.datetime.now()
 
 
@@ -24,19 +25,22 @@ def schedule(request):
 def doctor_profile(request, slug):
     doctor = get_object_or_404(Doctor, slug=slug)
     schedule = Schedule.objects.filter(doctor_id=doctor.pk)
+    schedule_days = Schedule.objects.filter(doctor_id=doctor.pk).values_list('day', flat=True)
     end_day = NOW + datetime.timedelta(days=doctor.pre_entry_days)
     actual_schedule = list(
         rrule(
             WEEKLY,
-            byweekday=tuple(sh.day for sh in schedule),
+            byweekday=tuple(schedule_days),
             dtstart=(NOW),
             until=(end_day),
         )
     )
-
+   
     context = {
         "doctor": doctor,
         "actual_schedule": actual_schedule,
         "now": NOW,
+        'schedule': schedule,
+        
     }
     return render(request, "core/doctor_profile.html", context=context)

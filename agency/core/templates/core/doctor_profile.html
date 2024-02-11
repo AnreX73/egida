@@ -4,21 +4,37 @@
 
 {% block content %}
 
-<h1>{{ doctor.speciality }} {{ doctor.lastname }} </h1>
-{{ now.date }}
+<h4>{{ doctor.speciality }} {{ doctor.lastname }} </h4>
 
-{% for fr in actual_schedule %}
+<div class="doctor_schedule_calendar">
+    <div class="standart_week">ПН</div>
+    <div class="standart_week">ВТ</div>
+    <div class="standart_week">СР</div>
+    <div class="standart_week">ЧТ</div>
+    <div class="standart_week">ПТ</div>
+    <div class="standart_week">СБ</div>
+    <div class="standart_week">ВС</div>
+    {% for fr in actual_schedule %}
+    <div class="calendar_items_wrapper">
 
-<p>{{ fr.weekday }}</p>
-<p>{{ schedule }}</p>
+        <div class="calendar_item date_area "><b>{{ fr.day }}</b></div>
+        <div class="calendar_item start_time_area">
+            {% for d in schedule %}
+            {% if d.day == fr.weekday %}
+            <p>c {{ d.start_appointment }}-00</p>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="calendar_item end_time_area ">
+            {% for d in schedule %}
+            {% if d.day == fr.weekday %}
+            <p>до {{ d.end_appointment }}-00</p>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
 
-<p>{{ fr.start_appointment }}</p>
-
-
-
-
-{% endfor %}
-
-
+</div>
 
 {% endblock content %}
