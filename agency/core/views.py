@@ -2,11 +2,21 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from core.models import Doctor, Schedule
 import datetime
-from dateutil.rrule import *
+from dateutil.rrule import rruleset, rrule, WEEKLY
 from dateutil.relativedelta import *
+import calendar
 
 
 NOW = datetime.datetime.now()
+
+standart_week = {
+    0: "ПН",
+    1: "ВТ",
+    2: "СР",
+    3: "ЧТ",
+    4: "ПТ",
+    5: "СБ",
+    6: "ВС",}
 
 
 def index(request):
@@ -35,12 +45,14 @@ def doctor_profile(request, slug):
             until=(end_day),
         )
     )
-   
+    cal = (calendar.Calendar().monthdatescalendar(NOW.year, NOW.month)) 
     context = {
         "doctor": doctor,
         "actual_schedule": actual_schedule,
         "now": NOW,
         'schedule': schedule,
+        'standart_week': standart_week.values(),
+        'cal': cal
         
     }
     return render(request, "core/doctor_profile.html", context=context)
