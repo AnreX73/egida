@@ -21,13 +21,17 @@ class DoctorAdmin(admin.ModelAdmin):
     inlines = [ScheduleAdmin]
     list_display = (
         "id",
+        "lastname",
         "firstname",
         "fathername",
-        "lastname",
         "speciality",
         "duration",
     )
-    list_display_links = ("id", "firstname")
+    list_display_links = (
+        "id",
+        "lastname",
+        "firstname",
+    )
     prepopulated_fields = {"slug": ("lastname", "firstname")}
     save_on_top = True
 
