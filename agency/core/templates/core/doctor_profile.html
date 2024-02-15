@@ -30,9 +30,15 @@
         <div class="weeks_wrapper">
             {% for c in cf %}
             {% if c == 0 %}
-            <span> </span>
+            <span style="color: red;background-color: aquamarine;padding: 0.5rem;"> X </span>
+            {% elif c == 50 %}
+            <span></span>
             {% else %}
-            <span>{{ c }}</span>
+            <form action="{% url 'home' %}" method="GET">
+                {% csrf_token %}
+                <input style="background: transparent;" type="submit" name="calendar" value="{{ c }}">
+            </form>
+            
             {% endif %}
             {% endfor %}
         </div>

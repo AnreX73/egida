@@ -49,21 +49,27 @@ def doctor_profile(request, slug):
         )
     )
     cal = calendar.Calendar().monthdatescalendar(NOW.year, NOW.month)
-    # weekday_cal = [i.weekday for i in cal ]
-    actual_cal = []
-    for i in cal:
-        for j in i:
-            print(j.weekday())
 
-    # print(schedule_days)
-    # print(cal)
+    actual_cal = []
+    for weeks in cal:
+        actual_week = []
+        for day in weeks:
+            if day.weekday() in schedule_days and day.month == NOW.month:
+                actual_week.append(day.day)
+            elif day.month != NOW.month:
+                actual_week.append(50)
+            else:
+                actual_week.append(0)
+
+        actual_cal.append(actual_week)
+
     context = {
         "doctor": doctor,
         "actual_schedule": actual_schedule,
         "now": NOW,
         "schedule": schedule,
         "standart_week": standart_week.values(),
-        "cal": cal,
+        "cal": actual_cal,
         # 'cal1': cal1
     }
     return render(request, "core/doctor_profile.html", context=context)
