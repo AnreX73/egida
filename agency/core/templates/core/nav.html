@@ -6,8 +6,9 @@
     </div>
     
     <div class="nav_box nav_main_box">
-
+        {% if user.is_authenticated %}
         <a class="simple_links"  href="{% url 'schedule' %}">регистратура </a>
+        {% endif %}
         <div class="main_nav_item">пункт меню</div>
         <div class="main_nav_item">пункт меню</div>
         <div class="main_nav_item">пункт меню</div>
