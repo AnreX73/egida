@@ -48,9 +48,8 @@ def doctor_profile(request, slug):
     for weeks in cal:
         actual_week = []
         for day in weeks:
-            if day.day< NOW.day:
-                actual_week.append(50)
-            elif day.month != NOW.month:
+            
+            if day.month != NOW.month:
                 actual_week.append(50)
             elif day.weekday() in schedule_days and day.month == NOW.month:
                 actual_week.append(day.day)
@@ -58,13 +57,12 @@ def doctor_profile(request, slug):
                 actual_week.append(0)
 
         actual_cal.append(actual_week)
-
+    print(actual_cal)
     context = {
         "doctor": doctor,
         "actual_schedule": actual_schedule,
-        "now": NOW,
         "schedule": schedule,
-        "standart_week": standart_week.values(),
+        "standart_week": standart_week,
         "cal": actual_cal,
         # 'cal1': cal1
     }

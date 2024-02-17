@@ -7,14 +7,14 @@
 <h4>{{ doctor.speciality }} {{ doctor.lastname }} </h4>
 <div class="doctor_calendar_wrapper">
     <div class="doctor_schedule_calendar">
-        {% for wd in standart_week %}
-        <div class="standart_week">{{ wd }}</div>
+        {% for wd, value in standart_week.items %}
+        <div class="standart_week">{{ value }}</div>
         {% endfor %}
-        {% for sh in schedule %}
+        <!-- {% for sh in schedule %}
         {% if sh.end_appointment != 24 %}
         <div class="wd_wrapper">
-            <div class="wd_item"> {{ sh.start_appointment }} <sup style="margin-left: 0.3rem;"> 00</sup> </div>
-            <div class="wd_item"> {{ sh.end_appointment }} <sup style="margin-left: 0.3rem;"> 00</sup></div>
+            <div class="wd_item"> {{ sh.start_appointment }}<sup style="margin-left: 0.3rem;">00</sup> </div>
+            <div class="wd_item"> {{ sh.end_appointment }}<sup style="margin-left: 0.3rem;">00</sup></div>
         </div>
         {% else %}
         <div class="invis_item wd_item"> X </div>
@@ -22,7 +22,7 @@
         {% endif %}
 
 
-        {% endfor %}
+        {% endfor %} -->
     </div>
     <hr>
     <div class="calendar_wrapper">
@@ -32,32 +32,20 @@
             {% if c == 0 %}
             <span style="color: red;"> X </span>
             {% elif c == 50 %}
-            <span></span>
+            <span> </span>
             {% else %}
             <form action="{% url 'home' %}" method="GET">
                 {% csrf_token %}
                 <input style="background: transparent;" type="submit" name="calendar" value="{{ c }}">
             </form>
-            
+
             {% endif %}
             {% endfor %}
         </div>
         {% endfor %}
     </div>
     <hr>
-    <div class="calendar_wrapper">
-        {% for cf in cal1 %}
-        <div class="weeks_wrapper">
-            {% for c in cf %}
-            {% if c == 0 %}
-            <span> </span>
-            {% else %}
-            <span>{{ c }}</span>
-            {% endif %}
-            {% endfor %}
-        </div>
-        {% endfor %}
-    </div>
+
 </div>
 
 {% endblock content %}
