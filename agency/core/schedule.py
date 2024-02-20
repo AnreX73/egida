@@ -3,7 +3,6 @@ from dateutil.rrule import rruleset, rrule, WEEKLY
 from dateutil.relativedelta import *
 import calendar
 
-
 NOW = datetime.datetime.now()
 
 standart_week = {
@@ -33,6 +32,7 @@ standart_year = {
 
 now_month_cal = calendar.Calendar().monthdatescalendar(NOW.year, NOW.month)
 next_month_cal = calendar.Calendar().monthdatescalendar(NOW.year, NOW.month + 1)
+
 
 def end_of_day(days):
     end_day = NOW + datetime.timedelta(days=days)

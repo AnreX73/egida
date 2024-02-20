@@ -145,7 +145,7 @@ nav {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: azure;
+  /* background-color: azure; */
 }
 
 .nav_user_box {
@@ -225,13 +225,16 @@ input:-webkit-autofill:focus {
   justify-items: center;
   padding: 0.5rem;
   width: 100%;
-  /* border-bottom: 1px dotted rgb(121, 214, 214);
-  background-color: azure; */
+  
 }
-
+.schedule_day {
+  font-size: 0.8rem;
+  color: teal;
+}
 .standart_week {
   font-size: 0.9rem;
-  
+  font-weight: 500;
+
 }
 
 .wd_wrapper {
@@ -253,21 +256,7 @@ input:-webkit-autofill:focus {
   margin-bottom: 0.5rem;
 }
 
-/* .invis_item {
-  position: relative;
-  width: 50px;
-  
-}
 
-.invis_item:after {
-  margin-top: 125px;
-  display: block;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 220px;
-  background: rgb(245, 210, 210, 0.7);
-} */
 
 .calendar_items_wrapper {
   display: grid;
