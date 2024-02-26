@@ -28,11 +28,11 @@
             {% for c in cf %}
             {% if c == 0 %}
             <span style="color: red;opacity: 0.3;"> X </span>
-            {% elif c < now.day %} <span style="opacity: 0.3;">{{ c }}</span>
+            {% elif c.day < now.day %} <span style="opacity: 0.3;">{{ c.day }}</span>
                 {% else %}
                 <form action="{% url 'home' %}" method="GET">
                     {% csrf_token %}
-                    <input style="background: transparent;" type="submit" name="calendar" value="{{ c }}">
+                    <input style="background: transparent;" type="submit" name="calendar" value="{{ c.day }}">
                 </form>
 
                 {% endif %}

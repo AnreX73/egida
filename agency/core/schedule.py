@@ -31,9 +31,29 @@ standart_year = {
 }
 
 now_month_cal = calendar.Calendar().monthdatescalendar(NOW.year, NOW.month)
-next_month_cal = calendar.Calendar().monthdatescalendar(NOW.year, NOW.month + 1)
+
+
+def week_schedule(schedule):
+    schedule_days = [
+        next((s for s in schedule if s.day == day), None) for day in standart_week
+    ]
 
 
 def end_of_day(days):
     end_day = NOW + datetime.timedelta(days=days)
     return end_day
+
+
+def actual_calendar(end_day):
+    actual_cal = [
+        [
+            (
+                day
+                if day.month == NOW.month and day.weekday() in schedule_days
+                else 0 if day.month == NOW.month else ""
+            )
+            for day in weeks
+        ]
+        for weeks in now_month_cal
+    ]
+    return actual_cal
