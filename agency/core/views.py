@@ -49,9 +49,9 @@ def doctor_profile(request, slug):
         ]
         for weeks in cal
     ]
-
+    end_day = end_of_day(doctor.pre_entry_days)
     now_month = standart_year[NOW.month]
-
+    print(end_day.month) 
     context = {
         "doctor": doctor,
         "schedule": actual_schedule,
