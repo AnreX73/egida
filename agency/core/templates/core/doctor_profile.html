@@ -13,9 +13,9 @@
         {% endfor %}
         {% for sh in schedule %}
         {% if sh %}
-        <div class="schedule_day">{{ sh.start_appointment }} - {{ sh.end_appointment }}</div>
+        <div class="schedule_day">{{ sh.start_appointment }}-{{ sh.end_appointment }}</div>
         {% else %}
-        <span style="color: red;opacity: 0.5;"> X </span>
+        <span style="color: red;opacity: 0.5; font-size: 0.8rem;"> x </span>
         {% endif %}
         {% endfor %}
     </div>
@@ -27,7 +27,7 @@
         <div class="weeks_wrapper">
             {% for c in cf %}
             {% if c == 0 %}
-            <span style="color: red;opacity: 0.3;"> X </span>
+            <span style="color: red;opacity: 0.3;"> x </span>
             {% elif c.day < now.day %} <span style="opacity: 0.3;">{{ c.day }}</span>
                 {% else %}
                 <form action="{% url 'home' %}" method="GET">

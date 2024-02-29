@@ -1,6 +1,7 @@
 import datetime
-from dateutil.rrule import rruleset, rrule, WEEKLY
-from dateutil.relativedelta import *
+
+# from dateutil.rrule import rruleset, rrule, WEEKLY
+# from dateutil.relativedelta import *
 import calendar
 
 NOW = datetime.datetime.now()
@@ -30,30 +31,45 @@ standart_year = {
     12: "Декабрь",
 }
 
+schedule_days = [1, 2, 5, 6]
 now_month_cal = calendar.Calendar().monthdatescalendar(NOW.year, NOW.month)
 
 
-def week_schedule(schedule):
-    schedule_days = [
-        next((s for s in schedule if s.day == day), None) for day in standart_week
-    ]
+def current_month_cal(year, month):
+    return calendar.Calendar().monthdatescalendar(year, month)
 
 
 def end_of_day(days):
     end_day = NOW + datetime.timedelta(days=days)
     return end_day
 
+c = end_of_day(50)
+print (c.month)
+check_cal = current_month_cal(2024, 7)
 
-def actual_calendar(end_day):
+
+def actual_calendar(current_month_cal, month=NOW.month):
     actual_cal = [
         [
             (
                 day
-                if day.month == NOW.month and day.weekday() in schedule_days
-                else 0 if day.month == NOW.month else ""
+                if day.month == month and day.weekday() in schedule_days
+                else 0 if day.month == month else ""
             )
             for day in weeks
         ]
-        for weeks in now_month_cal
+        for weeks in current_month_cal
     ]
     return actual_cal
+
+
+all_actual_cal = actual_calendar(check_cal, 7)
+
+print(all_actual_cal)
+
+
+def week_schedule(schedule):
+    schedule_days = [
+        next((s for s in schedule if s.day == day), None) for day in standart_week
+    ]
+    return schedule_days

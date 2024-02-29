@@ -5,7 +5,6 @@ from core.models import Doctor, Schedule
 import datetime
 import calendar
 from core.schedule import (
-    end_of_day,
     standart_week,
     NOW,
     now_month_cal,
@@ -36,7 +35,7 @@ def doctor_profile(request, slug):
     schedule_days = Schedule.objects.filter(doctor_id=doctor.pk).values_list(
         "day", flat=True
     )
-    
+
     cal = now_month_cal
     actual_schedule = week_schedule(schedule)
     actual_cal = [
