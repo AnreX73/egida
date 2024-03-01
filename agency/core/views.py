@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.template.defaultfilters import length
 from core.models import Doctor, Schedule
 import datetime
 import calendar
@@ -10,6 +11,8 @@ from core.schedule import (
     now_month_cal,
     standart_year,
     week_schedule,
+    end_of_day,
+    all_actual_calendar
 )
 from dateutil import relativedelta
 
@@ -49,9 +52,12 @@ def doctor_profile(request, slug):
         ]
         for weeks in cal
     ]
+    check = all_actual_calendar(doctor.pre_entry_days)
+    for f in check:
+        print(f)
+    # print(actual_cal)   
     end_day = end_of_day(doctor.pre_entry_days)
     now_month = standart_year[NOW.month]
-    print(end_day.month) 
     context = {
         "doctor": doctor,
         "schedule": actual_schedule,

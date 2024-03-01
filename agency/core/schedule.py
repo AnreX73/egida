@@ -31,7 +31,7 @@ standart_year = {
     12: "Декабрь",
 }
 
-schedule_days = [1, 2, 5, 6]
+schedule_days = [0, 1, 5, 6]
 now_month_cal = calendar.Calendar().monthdatescalendar(NOW.year, NOW.month)
 
 
@@ -43,12 +43,8 @@ def end_of_day(days):
     end_day = NOW + datetime.timedelta(days=days)
     return end_day
 
-c = end_of_day(50)
-print (c.month)
-check_cal = current_month_cal(2024, 7)
 
-
-def actual_calendar(current_month_cal, month=NOW.month):
+def actual_calendar(current_month_cal, month):
     actual_cal = [
         [
             (
@@ -63,9 +59,22 @@ def actual_calendar(current_month_cal, month=NOW.month):
     return actual_cal
 
 
-all_actual_cal = actual_calendar(check_cal, 7)
+all_actual_cal = []  # all_actual_cal = actual_calendar(check_cal, 7)
 
-print(all_actual_cal)
+
+def all_actual_calendar(days):
+    month = NOW.month
+    year = NOW.year
+    while month <= end_of_day(days).month:
+        # all_actual_cal.append(month)
+        all_actual_cal.append(actual_calendar(current_month_cal(year, month), month))
+        month += 1
+    return all_actual_cal
+
+
+# cal20 = all_actual_calendar(23)
+# print(cal20)
+# print('_______________________________________________________________________')
 
 
 def week_schedule(schedule):
