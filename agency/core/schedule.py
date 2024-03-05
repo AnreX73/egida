@@ -31,7 +31,7 @@ standart_year = {
     12: "Декабрь",
 }
 
-schedule_days = [0, 1, 5, 6]
+schedule_days_list = [0, 1, 4, 6]
 now_month_cal = calendar.Calendar().monthdatescalendar(NOW.year, NOW.month)
 
 
@@ -49,7 +49,7 @@ def actual_calendar(current_month_cal, month):
         [
             (
                 day
-                if day.month == month and day.weekday() in schedule_days
+                if day.month == month and day.weekday() in schedule_days_list
                 else 0 if day.month == month else ""
             )
             for day in weeks
@@ -59,10 +59,11 @@ def actual_calendar(current_month_cal, month):
     return actual_cal
 
 
-all_actual_cal = []  # all_actual_cal = actual_calendar(check_cal, 7)
+# all_actual_cal = actual_calendar(check_cal, 7)
 
 
 def all_actual_calendar(days):
+    all_actual_cal = []
     month = NOW.month
     year = NOW.year
     while month <= end_of_day(days).month:
@@ -82,3 +83,6 @@ def week_schedule(schedule):
         next((s for s in schedule if s.day == day), None) for day in standart_week
     ]
     return schedule_days
+
+
+

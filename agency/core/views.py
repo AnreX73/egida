@@ -7,12 +7,8 @@ import datetime
 import calendar
 from core.schedule import (
     standart_week,
-    NOW,
-    now_month_cal,
     standart_year,
-    week_schedule,
-    end_of_day,
-    all_actual_calendar
+    NOW,
 )
 from dateutil import relativedelta
 
@@ -35,35 +31,51 @@ def schedule(request):
 def doctor_profile(request, slug):
     doctor = get_object_or_404(Doctor, slug=slug)
     schedule = Schedule.objects.filter(doctor_id=doctor.pk)
-    schedule_days = Schedule.objects.filter(doctor_id=doctor.pk).values_list(
+    schedule_days_list = Schedule.objects.filter(doctor_id=doctor.pk).values_list(
         "day", flat=True
     )
-
-    cal = now_month_cal
-    actual_schedule = week_schedule(schedule)
-    actual_cal = [
-        [
-            (
-                day
-                if day.month == NOW.month and day.weekday() in schedule_days
-                else 0 if day.month == NOW.month else ""
-            )
-            for day in weeks
-        ]
-        for weeks in cal
+    schedule_days = [
+        next((s for s in schedule if s.day == day), None) for day in standart_week
     ]
-    check = all_actual_calendar(doctor.pre_entry_days)
-    for f in check:
-        print(f)
-    # print(actual_cal)   
-    end_day = end_of_day(doctor.pre_entry_days)
-    now_month = standart_year[NOW.month]
+
+    end_of_pre_entry = NOW + datetime.timedelta(days=doctor.pre_entry_days)
+
+    def current_month_cal(year, month):
+        return calendar.Calendar().monthdatescalendar(year, month)
+
+    def actual_calendar(current_month_cal, month):
+        actual_cal = [
+            [
+                (
+                    day
+                    if day.month == month and day.weekday() in schedule_days_list
+                    else 0 if day.month == month else ""
+                )
+                for day in weeks
+            ]
+            for weeks in current_month_cal
+        ]
+        return actual_cal
+
+    def all_actual_calendar(days):
+        all_actual_cal = []
+        month = NOW.month
+        year = NOW.year
+        while month <= end_of_pre_entry.month:
+            # all_actual_cal.append(standart_year[month])
+            all_actual_cal.append(actual_calendar(current_month_cal(year, month), month))
+            month += 1
+        return all_actual_cal
+
+    actual_cal = all_actual_calendar(doctor.pre_entry_days)
+
     context = {
         "doctor": doctor,
-        "schedule": actual_schedule,
+        "schedule": schedule_days,
         "standart_week": standart_week,
         "cal": actual_cal,
-        "now": NOW,
-        "now_month": now_month,
+        'end_day': end_of_pre_entry,
+        'now': NOW
+
     }
     return render(request, "core/doctor_profile.html", context=context)

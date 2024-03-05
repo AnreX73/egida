@@ -5,7 +5,8 @@
 {% block content %}
 
 <h4>{{ doctor.speciality }} {{ doctor.lastname }} </h4>
-{{ now_month }}
+<div class="calendar_container">
+{% for ac in cal %}
 <div class="doctor_calendar_wrapper">
     <div class="doctor_schedule_calendar">
         {% for wd, value in standart_week.items %}
@@ -15,7 +16,7 @@
         {% if sh %}
         <div class="schedule_day">{{ sh.start_appointment }}-{{ sh.end_appointment }}</div>
         {% else %}
-        <span style="color: red;opacity: 0.5; font-size: 0.8rem;"> x </span>
+        <span style="color: red; opacity: 0.2; font-size: 0.9 rem;"> x </span>
         {% endif %}
         {% endfor %}
     </div>
@@ -23,16 +24,18 @@
     <hr>
 
     <div class="calendar_wrapper">
-        {% for cf in cal %}
+        
+        {% for cf in ac %}
         <div class="weeks_wrapper">
             {% for c in cf %}
             {% if c == 0 %}
-            <span style="color: red;opacity: 0.3;"> x </span>
-            {% elif c.day < now.day %} <span style="opacity: 0.3;">{{ c.day }}</span>
+            <span style="color: red;opacity: 0.2;"> x </span>
+            {% elif c.day < now.day and c.month == now.month %} <span style="opacity: 0.2;">{{ c.day }}</span>
+            {% elif c.day > end_day.day and c.month == end_day.month %} <span style="opacity: 0.2;">{{ c.day }}</span>
                 {% else %}
                 <form action="{% url 'home' %}" method="GET">
                     {% csrf_token %}
-                    <input style="background: transparent;" type="submit" name="calendar" value="{{ c.day }}">
+                    <input style="background: transparent; font-weight: 600;" type="submit" name="calendar" value="{{ c.day }}">
                 </form>
 
                 {% endif %}
@@ -43,5 +46,6 @@
     <hr>
 
 </div>
-
+{% endfor %}
+</div>
 {% endblock content %}

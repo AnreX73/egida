@@ -210,9 +210,21 @@ input:-webkit-autofill:focus {
   text-align: justify;
   font-size: 1.1rem;
 }
-
+.calendar_container {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
 .doctor_calendar_wrapper {
   max-width: 360px;
+  background-color: rgb(239, 255, 255);
+  border-radius: 4px;
+  padding: 0.5rem;
+  box-shadow: rgb(223, 233, 233) 0px 0px 3px 2px ;
+  
 }
 
 .doctor_schedule_calendar {
@@ -233,7 +245,7 @@ input:-webkit-autofill:focus {
 }
 .standart_week {
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
 
 }
 
