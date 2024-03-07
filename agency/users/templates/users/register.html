@@ -30,6 +30,16 @@
            {% render_field form.phone_number placeholder=form.phone_number.help_text  %}
            <div class="form-errors" style="color: brown;">{{ form.phone_number.errors }}</div>
         </div>
+        <div class="form_fields_radio">
+            <label >{{form.sex.label}}</label>
+           {% render_field form.sex|add_class:"radio_select" %}
+           <div class="form-errors" style="color: brown;">{{ form.sex.errors }}</div>
+        </div>
+        <div class="form_fields">
+            <label >{{form.day_of_birth.label}}</label>
+           {% render_field form.day_of_birth placeholder=form.day_of_birth.help_text  %}
+           <div class="form-errors" style="color: brown;">{{ form.day_of_birth.errors }}</div>
+        </div>
         <div class="form_fields">
             <label >{{form.password1.label}}</label>
            {% render_field form.password1 placeholder=form.password1.help_text  %}

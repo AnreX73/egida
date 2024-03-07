@@ -177,6 +177,36 @@ nav {
   box-shadow: 0px 0px 34px 100px #fcfcfc inset;
 }
 
+.form_fields_radio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio_select {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#id_sex>div:nth-child(1)>label,
+#id_sex>div:nth-child(2)>label {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  
+
+}
+
+#id_sex_1,
+#id_sex_0 {
+  justify-self: end;
+  width: 1rem;
+}
+
+
+
 .form_fields input:focus {
   box-shadow: 0 0 0px 1000px white inset,
     0 0 5px rgba(64, 215, 220, 0.8);
@@ -210,6 +240,7 @@ input:-webkit-autofill:focus {
   text-align: justify;
   font-size: 1.1rem;
 }
+
 .calendar_container {
   margin-top: 1rem;
   display: flex;
@@ -218,13 +249,14 @@ input:-webkit-autofill:focus {
   align-items: center;
   justify-content: center;
 }
+
 .doctor_calendar_wrapper {
   max-width: 360px;
   background-color: rgb(239, 255, 255);
   border-radius: 4px;
   padding: 0.5rem;
-  box-shadow: rgb(223, 233, 233) 0px 0px 3px 2px ;
-  
+  box-shadow: rgb(223, 233, 233) 0px 0px 3px 2px;
+
 }
 
 .doctor_schedule_calendar {
@@ -237,12 +269,14 @@ input:-webkit-autofill:focus {
   justify-items: center;
   padding: 0.5rem;
   width: 100%;
-  
+
 }
+
 .schedule_day {
   font-size: 0.8rem;
   color: teal;
 }
+
 .standart_week {
   font-size: 0.9rem;
   font-weight: 600;

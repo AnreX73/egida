@@ -9,6 +9,8 @@
 <p> полное имя : {{user.first_name}}</p> 
 <p> телефон для связи : {{user.phone_number}}</p> 
 <p> ваша электронная почта :  {{user.email}}</p> 
+<p> ваш пол :  {{user.get_sex_display}}</p> 
+<p> ваш д.р.:  {{user.day_of_birth}}</p> 
 <a class="simple_links" href="{% url 'users:update_user_info' %}">редактировать данные профиля </a>
 
 {% endblock content %}

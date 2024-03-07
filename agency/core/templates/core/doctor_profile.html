@@ -5,6 +5,7 @@
 {% block content %}
 
 <h4>{{ doctor.speciality }} {{ doctor.lastname }} </h4>
+<h5>предварительная запись до {{ end_day.date }} </h5>
 <div class="calendar_container">
 {% for ac in cal %}
 <div class="doctor_calendar_wrapper">
