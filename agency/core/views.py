@@ -1,16 +1,12 @@
-from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.template.defaultfilters import length
 from core.models import Doctor, Schedule
 import datetime
 import calendar
 from core.schedule import (
     standart_week,
-    standart_year,
     NOW,
 )
-from dateutil import relativedelta
 
 
 def index(request):
